@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone') {
             steps {
-                git 'https://github.com/Namanjaina/DevOps-CI-CD.git'
+                git branch: 'main', url: 'https://github.com/Namanjaina/DevOps-CI-CD.git'
             }
         }
 
@@ -16,14 +16,14 @@ pipeline {
 
         stage('Build Docker') {
             steps {
-                sh 'docker build -t devops-app .'
+                bat 'docker build -t devops-app .'
             }
         }
 
         stage('Run Docker') {
             steps {
-                sh 'docker rm -f devops-app-container || true'
-                sh 'docker run -d --name devops-app-container -p 8000:8000 devops-app'
+                bat 'docker rm -f devops-app-container || exit 0'
+                bat 'docker run -d --name devops-app-container -p 8000:8000 devops-app'
             }
         }
     }
