@@ -16,7 +16,7 @@ def download_resume(request):
 
 def home(request):
     profile = {
-        "name": "Aman Kumar",
+        "name": "Naman jain",
         "role": "DevOps Engineer and Web Developer",
         "bio": "I build fast web experiences and deployment pipelines that are clean, reliable, and ready for real-world delivery.",
         "location": "India",
