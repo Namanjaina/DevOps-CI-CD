@@ -1,0 +1,182 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps CI/CD Demo</title>
+    <link rel="stylesheet" href="{% static 'hello/styles.css' %}">
+</head>
+<body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <div class="page-shell">
+        <header class="topbar">
+            <div class="brand">{{ profile.name }}</div>
+            <nav class="nav">
+                <a href="#about">About</a>
+                <a href="#work">Work</a>
+                <a href="#process">Process</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </header>
+
+        <main>
+            <section class="hero-grid">
+                <section class="hero-copy-block">
+                    <p class="eyebrow">Portfolio Style Showcase</p>
+                    <h1>{{ profile.role }} with a focus on design, delivery, and deployment.</h1>
+                    <p class="hero-copy">
+                        {{ profile.bio }}
+                    </p>
+
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#work">View Work</a>
+                        <a class="button button-secondary" href="{{ resume_url }}" download>Download Resume</a>
+                    </div>
+                </section>
+
+                <aside class="hero-card">
+                    <div class="profile-head">
+                        <div class="avatar">AK</div>
+                        <div>
+                            <p class="card-label">Profile</p>
+                            <h2>{{ profile.name }}</h2>
+                        </div>
+                    </div>
+                    <p class="profile-meta">{{ profile.location }} · {{ profile.availability }}</p>
+                    <div class="mini-grid">
+                        {% for stat in stats %}
+                        <div class="mini-stat">
+                            <span class="metric-value">{{ stat.value }}</span>
+                            <span class="metric-label">{{ stat.label }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </aside>
+            </section>
+
+            <section class="split-layout split-layout-top" id="about">
+                <section class="section-block section-panel">
+                    <div class="section-heading">
+                        <p class="eyebrow">About Me</p>
+                        <h2>I create polished interfaces backed by practical engineering.</h2>
+                    </div>
+                    <p class="long-copy">
+                        This portfolio layout is set up as a personal website base. You can replace the placeholder name,
+                        email, social links, project descriptions, and resume file with your real details without changing the structure.
+                    </p>
+                </section>
+
+                <section class="section-block section-panel">
+                    <div class="section-heading">
+                        <p class="eyebrow">Services</p>
+                        <h2>What I can build</h2>
+                    </div>
+                    <div class="services-list">
+                        {% for item in services %}
+                        <span>{{ item }}</span>
+                        {% endfor %}
+                    </div>
+                </section>
+            </section>
+
+            <section class="section-block" id="work">
+                <div class="section-heading">
+                    <p class="eyebrow">Selected Work</p>
+                    <h2>Projects shaped like portfolio case studies</h2>
+                </div>
+
+                <div class="project-grid">
+                    {% for item in projects %}
+                    <article class="project-card">
+                        <p class="project-tag">{{ item.tag }}</p>
+                        <h3>{{ item.title }}</h3>
+                        <p>{{ item.description }}</p>
+                        <p class="project-impact">{{ item.impact }}</p>
+                    </article>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="split-layout" id="process">
+                <section class="section-block section-panel">
+                    <div class="section-heading">
+                        <p class="eyebrow">Stack</p>
+                        <h2>Tools behind the build</h2>
+                    </div>
+
+                    <div class="stack-list">
+                        {% for item in stack %}
+                        <span>{{ item }}</span>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <section class="section-block section-panel">
+                    <div class="section-heading">
+                        <p class="eyebrow">Process</p>
+                        <h2>How this project moves from idea to deployment</h2>
+                    </div>
+
+                    <div class="timeline">
+                        {% for item in timeline %}
+                        <article class="timeline-item">
+                            <p class="timeline-period">{{ item.period }}</p>
+                            <h3>{{ item.title }}</h3>
+                            <p>{{ item.description }}</p>
+                        </article>
+                        {% endfor %}
+                    </div>
+                </section>
+            </section>
+
+            <section class="split-layout">
+                <section class="section-block section-panel">
+                    <div class="section-heading">
+                        <p class="eyebrow">Experience</p>
+                        <h2>Short professional snapshot</h2>
+                    </div>
+                    <div class="timeline">
+                        {% for item in experience %}
+                        <article class="timeline-item">
+                            <p class="timeline-period">{{ item.period }}</p>
+                            <h3>{{ item.title }}</h3>
+                            <p>{{ item.description }}</p>
+                        </article>
+                        {% endfor %}
+                    </div>
+                </section>
+
+                <section class="section-block section-panel">
+                    <div class="section-heading">
+                        <p class="eyebrow">Connect</p>
+                        <h2>Links you can replace with real profiles</h2>
+                    </div>
+                    <div class="social-list">
+                        {% for item in social_links %}
+                        <a href="{{ item.url }}" target="_blank" rel="noreferrer">{{ item.label }}</a>
+                        {% endfor %}
+                    </div>
+                    <a class="button button-secondary inline-button" href="{{ api_url }}">Check API Endpoint</a>
+                </section>
+            </section>
+
+            <section class="contact-banner" id="contact">
+                <div>
+                    <p class="eyebrow">Ready To Run</p>
+                    <h2>Use this site as a portfolio base or extend it into your own branded project page.</h2>
+                </div>
+
+                <div class="contact-details">
+                    {% for point in contact_points %}
+                    <p>{{ point }}</p>
+                    {% endfor %}
+                    <p>{{ profile.email }}</p>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>

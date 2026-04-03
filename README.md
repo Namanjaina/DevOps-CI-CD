@@ -44,10 +44,13 @@ This project gives you a simple Django app plus the core DevOps pieces around it
 
 ## 2. App Details
 
-The Django app exposes one endpoint:
+The Django app now includes:
 
-- `GET /hello`
-- Response:
+- `GET /` for a browser-friendly landing page
+- `GET /hello` for the JSON API response
+- `GET /hello/` for the same JSON API response
+
+API response:
 
 ```json
 {
@@ -66,6 +69,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\run-local.ps1
 
 Open:
 
+- `http://127.0.0.1:8000/`
 - `http://127.0.0.1:8000/hello`
 
 ### Manual start
@@ -107,6 +111,7 @@ docker run -d -p 8000:8000 --name devops-django-app devops-django-app
 
 Open:
 
+- `http://localhost:8000/`
 - `http://localhost:8000/hello`
 
 ## 6. Jenkins Pipeline

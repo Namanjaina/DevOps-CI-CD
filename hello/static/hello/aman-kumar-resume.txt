@@ -1,0 +1,26 @@
+Aman Kumar
+DevOps Engineer and Web Developer
+
+Email: aman.dev@example.com
+Location: India
+
+Summary
+Builds web applications and deployment workflows with Django, Docker, Jenkins, Kubernetes, Terraform, and Ansible.
+
+Skills
+- Django
+- Python
+- Docker
+- Jenkins
+- Kubernetes
+- Terraform
+- Ansible
+- Git
+
+Projects
+- DevOps Automation Platform
+- Release Flow Architecture
+- Infrastructure as Code
+
+Note
+Replace this file with your real resume PDF or DOC file when ready.
