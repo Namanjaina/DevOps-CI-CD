@@ -5,8 +5,8 @@ from .views import download_resume, hello_devops, home
 
 urlpatterns = [
     path("", home, name="home"),
-    path("webhook/", github_webhook, name="github-webhook"),
     path("hello", hello_devops, name="hello-devops"),
     path("hello/", hello_devops, name="hello-devops-slash"),
     path("resume/", download_resume, name="resume"),
+    path("webhook/", github_webhook)
 ]
