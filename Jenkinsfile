@@ -26,14 +26,29 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'python -m pip install --upgrade pip'
-                bat 'python -m pip install -r requirements.txt'
+                bat '''
+                where python >nul 2>nul
+                if %ERRORLEVEL% EQU 0 (
+                    python -m pip install --upgrade pip
+                    python -m pip install -r requirements.txt
+                ) else (
+                    py -3 -m pip install --upgrade pip
+                    py -3 -m pip install -r requirements.txt
+                )
+                '''
             }
         }
 
         stage('Django Check') {
             steps {
-                bat 'python manage.py check'
+                bat '''
+                where python >nul 2>nul
+                if %ERRORLEVEL% EQU 0 (
+                    python manage.py check
+                ) else (
+                    py -3 manage.py check
+                )
+                '''
             }
         }
 
