@@ -6,7 +6,6 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
 
-
 def hello_devops(request):
     return JsonResponse({"message": "Hello DevOps"})
 
@@ -14,6 +13,15 @@ def hello_devops(request):
 def download_resume(request):
     resume_path = Path(settings.BASE_DIR) / "hello" / "static" / "hello" / "aman-kumar-resume.txt"
     return FileResponse(resume_path.open("rb"), as_attachment=True, filename="aman-kumar-resume.txt")
+
+
+@csrf_exempt
+def github_webhook(request):
+    if request.method == "POST":
+        return JsonResponse({"status": "received", "method": "POST"})
+    if request.method == "GET":
+        return JsonResponse({"status": "received", "method": "GET"})
+    return JsonResponse({"status": "method not allowed", "method": request.method}, status=405)
 
 
 def home(request):
@@ -128,15 +136,3 @@ def home(request):
         "resume_url": "/resume/",
     }
     return render(request, "hello/index.html", context)
-
-    @csrf_exempt
-    def github_webhook(request):
-     if request.method == "POST":
-        print("Webhook received!")   # console me check karne ke liye
-        return JsonResponse({"status": "received"})
-     
-    @csrf_exempt
-    def github_webhook(request):
-     print("🔥 WEBHOOK HIT")
-     print("Event:", request.headers.get("X-GitHub-Event"))
-     return JsonResponse({"status": "ok"})
