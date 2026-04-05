@@ -134,3 +134,9 @@ def home(request):
      if request.method == "POST":
         print("Webhook received!")   # console me check karne ke liye
         return JsonResponse({"status": "received"})
+     
+    @csrf_exempt
+    def github_webhook(request):
+     print("🔥 WEBHOOK HIT")
+     print("Event:", request.headers.get("X-GitHub-Event"))
+     return JsonResponse({"status": "ok"})
