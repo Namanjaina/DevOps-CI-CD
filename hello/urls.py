@@ -5,5 +5,6 @@ urlpatterns = [
     path("", home, name="home"),
     path("hello/", hello_devops, name="hello-devops"),
     path("resume/", download_resume, name="resume"),
+    path("webhook", github_webhook, name="github-webhook-no-slash"),
     path("webhook/", github_webhook, name="github-webhook"),
 ]
