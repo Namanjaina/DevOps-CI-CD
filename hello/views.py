@@ -3,6 +3,8 @@ from pathlib import Path
 from django.conf import settings
 from django.http import FileResponse, JsonResponse
 from django.shortcuts import render
+from django.views.decorators.csrf import csrf_exempt
+
 
 
 def hello_devops(request):
@@ -126,3 +128,9 @@ def home(request):
         "resume_url": "/resume/",
     }
     return render(request, "hello/index.html", context)
+
+    @csrf_exempt
+    def github_webhook(request):
+     if request.method == "POST":
+        print("Webhook received!")   # console me check karne ke liye
+        return JsonResponse({"status": "received"})
