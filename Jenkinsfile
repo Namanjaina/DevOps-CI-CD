@@ -10,6 +10,7 @@ pipeline {
         CONTAINER_NAME = 'devops-app-container'
         HOST_PORT = '8000'
         CONTAINER_PORT = '8000'
+        PYTHON_EXE = 'C:\\Users\\india\\AppData\\Local\\Programs\\Python\\Python313\\python.exe'
     }
 
     options {
@@ -26,29 +27,14 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat '''
-                where python >nul 2>nul
-                if %ERRORLEVEL% EQU 0 (
-                    python -m pip install --upgrade pip
-                    python -m pip install -r requirements.txt
-                ) else (
-                    py -3 -m pip install --upgrade pip
-                    py -3 -m pip install -r requirements.txt
-                )
-                '''
+                bat '"%PYTHON_EXE%" -m pip install --upgrade pip'
+                bat '"%PYTHON_EXE%" -m pip install -r requirements.txt'
             }
         }
 
         stage('Django Check') {
             steps {
-                bat '''
-                where python >nul 2>nul
-                if %ERRORLEVEL% EQU 0 (
-                    python manage.py check
-                ) else (
-                    py -3 manage.py check
-                )
-                '''
+                bat '"%PYTHON_EXE%" manage.py check'
             }
         }
 
